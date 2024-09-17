@@ -1,0 +1,22 @@
+{
+  "name": "http-proxy-handle-invalid-header",
+  "version": "1.0.0",
+  "description": "Test http-proxy unhandled nodejs http exception ERR_INVALID_HTTP_TOKEN",
+  "main": "index.js",
+  "scripts": {
+    "main-server": "node main-server.js",
+    "proxy-server": "node proxy-server.js"
+  },
+  "keywords": [
+    "http-proxy",
+    "invalid",
+    "http",
+    "header",
+    "ERR_INVALID_HTTP_TOKEN"
+  ],
+  "author": "pinky tinky",
+  "license": "ISC",
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}

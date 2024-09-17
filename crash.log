@@ -1,0 +1,24 @@
+$ npm run proxy-server
+
+> http-proxy-handle-invalid-header@1.0.0 proxy-server
+> node proxy-server.js
+
+Proxy server listening on port 4444
+node:_http_outgoing:622
+    throw new ERR_INVALID_HTTP_TOKEN(label || 'Header name', name);
+    ^
+
+TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["user agent"]
+    at ClientRequest.setHeader (node:_http_outgoing:654:3)
+    at new ClientRequest (node:_http_client:286:14)
+    at Object.request (node:http:103:10)
+    at Array.stream (/home/tien/node-http-proxy-handle-invalid-header/node_modules/http-proxy/lib/http-proxy/passes/web-incoming.js:126:74)
+    at ProxyServer.<anonymous> (/home/tien/node-http-proxy-handle-invalid-header/node_modules/http-proxy/lib/http-proxy/index.js:81:21)
+    at Server.<anonymous> (/home/tien/node-http-proxy-handle-invalid-header/proxy-server.js:8:9)
+    at Server.emit (node:events:514:28)
+    at parserOnIncoming (node:_http_server:1143:12)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+  code: 'ERR_INVALID_HTTP_TOKEN'
+}
+
+Node.js v20.10.0
