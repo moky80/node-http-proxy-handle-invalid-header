@@ -3,14 +3,19 @@ const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer({});
 const TARGET_SERVER = 'http://localhost:8888'; // The main server
 
-// The event 'error', 'open', 'data' are documented in https://github.com/http-party/node-http-proxy#
-// but were never observed in my tests.
-proxy.on('error', function(e) {
+proxy.on('error', function(err, req, res) {
   console.error('--proxy error:', err);
-  res.writeHead(500, { 'Content-Type': 'text/plain' });
-  res.end('Something went wrong while proxying the request.');
+  if ( req ) { // In my test, req is undefined
+    console.error('--proxy error req.headers:', req.headers);
+  }
+  if ( res ) { // In my test, res is undefined
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end('Something went wrong while proxying the request.');
+  }
 });
 
+// The event 'open', 'data' are documented in https://github.com/http-party/node-http-proxy#
+// but were never observed in my tests.
 proxy.on('open', function (proxySocket) {
   console.log("--proxy open");
   // listen for messages coming FROM the target here
